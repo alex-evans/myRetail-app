@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Alex Evans' myRetail App</title>
+    <link href="/public/css/main.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div>
+      <h1>myRetail Application</h1>
+    </div>
+    <div>
+      <h4>User Stories:</h4>
+      <ol>
+        <li>Application responds to an HTTP GET request at /products/{id} and delivers product data as JSON (where {id} will be a number).</li>
+        <li>Performs an HTTP GET to retrieve the product name from an external API. (For this exercise the data will come from redsky.target.com, but let's just pretend this is an resource hosted by myRetail)</li>
+        <li>Reads pricing information from a NoSQL data store and combines it with the product id and name from the HTTP request into a single response.</li>
+        <li>(BONUS) Accepts an HTTP PUT request at the same path (/products/{id}), containing a JSON request body similar to the GET response, and updates the product's price in the data store.</li>
+      </ol>
+    </div>
+  </body>
+</html>
