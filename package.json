@@ -6,10 +6,16 @@
   "scripts": {
     "test": "mocha test"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alex-evans/myRetail-app"
+  },
+  "author": "Alex Evans",
   "license": "ISC",
   "dependencies": {
     "express": "^4.14.0",
+    "mongodb": "^2.2.12",
+    "mongoose": "^4.7.0",
     "request": "^2.79.0"
   },
   "devDependencies": {

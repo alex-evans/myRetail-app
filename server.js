@@ -1,9 +1,12 @@
 'use strict'
 
+let mongoose = require('mongoose')
 let express = require('express')
 let routes = require('./app/routes/index.js')
 let app = express()
 let url = 'mongodb://localhost:27017'
+
+mongoose.connect(url)
 
 app.use('/controllers', express.static(process.cwd() + '/app/controllers'))
 app.use('/public', express.static(process.cwd() + '/public'))

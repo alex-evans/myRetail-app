@@ -15,10 +15,13 @@ describe("Main Page", function() {
 })
 
 describe("Product Request", function() {
+
   it("returns status 200", function(done) {
     request(url + '/products/1', function(err, res, body) {
       expect(res.statusCode).to.equal(200)
       done()
     })
   })
+
+
 })
