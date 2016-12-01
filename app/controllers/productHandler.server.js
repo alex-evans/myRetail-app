@@ -6,16 +6,15 @@ function ProductHandler() {
 
   this.postProduct = function(req, res) {
 
-    let newProduct = {
-      _id: req.params.id,
-      name: req.params.name
-    }
+    let newProduct = Products({
+      id: req.params.id,
+      name: "The Big Lebowksi (Blu-ray) (Widescreen)"
+    })
 
-    Products
-              .insert(newProduct, function(err, data) {
-                if(err) throw err
-                res.json({ message: "Product successfully created!", newProduct })
-              })
+    newProduct.save(function(err) {
+      if(err) throw error
+      return res.json({message: "Product successfully created!"})
+    })
 
   }
 

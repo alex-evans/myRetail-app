@@ -14,5 +14,5 @@ module.exports = function Products(app) {
 
   app.route('/products/:id')
     .get(productHandler.getProduct)
-
+    .post(productHandler.postProduct)
 }

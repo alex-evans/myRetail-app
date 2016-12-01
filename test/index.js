@@ -19,7 +19,7 @@ describe("Main Page", () => {
 
 describe("Products", function() {
 
-  describe("Get Product", () => {
+  describe("Get Product", function() {
 
     it("returns status 200", function(done) {
       request(url + '/products/1', function(err, res, body) {
@@ -34,6 +34,24 @@ describe("Products", function() {
         done()
       })
     })
+  })
+
+  describe("Create Product", function() {
+
+    it("returns status 200", function(done) {
+      request.post({url: url + '/products/2', form: {id:2}}, function(err, res, body) {
+        expect(res.statusCode).to.equal(200)
+        done()
+      })
+    })
+
+    it("returns creation success", function(done) {
+      request.post({url: url + '/products/3', form: {id:3}}, function(err, res, body) {
+        expect(body).to.equal('{"message":"Product successfully created!"}')
+        done()
+      })
+    })
+
   })
 
 })
