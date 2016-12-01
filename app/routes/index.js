@@ -13,6 +13,6 @@ module.exports = function Products(app) {
     })
 
   app.route('/products/:id')
-    .get(productHandler.getName)
+    .get(productHandler.getProduct)
 
 }

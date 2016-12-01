@@ -8,5 +8,5 @@ let Product = new Schema(
   { name: String },
   { current_price:
       { value: Number,
-        currency_code: String }},
+        currency_code: String }}
 )

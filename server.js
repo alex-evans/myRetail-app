@@ -7,6 +7,8 @@ let app = express()
 let url = 'mongodb://localhost:27017'
 
 mongoose.connect(url)
+let db = mongoose.connection
+db.on('error', console.error.bind(console, 'connection error:'))
 
 app.use('/controllers', express.static(process.cwd() + '/app/controllers'))
 app.use('/public', express.static(process.cwd() + '/public'))
