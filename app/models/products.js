@@ -4,7 +4,7 @@ let mongoose = require('mongoose')
 let Schema = mongoose.Schema
 
 let productsSchema = new Schema({
-  id: Number,
+  _id: Number,
   name: String
 })
 
