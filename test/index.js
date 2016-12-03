@@ -21,15 +21,19 @@ describe("Products", function() {
   describe("Get Product", function() {
 
     it("returns status 200", function(done) {
-      request(url + '/products/1', function(err, res, body) {
+      request(url + '/products/13860428', function(err, res, body) {
         expect(res.statusCode).to.equal(200)
         done()
       })
     })
 
     it("returns product JSON", function(done) {
-      request(url + '/products/1', function(err, res, body) {
-        expect(body).to.equal('{"_id":"1"}')
+      request(url + '/products/13860428', function(err, res, body) {
+        var product = JSON.parse(body)
+        expect(product.id).to.equal('13860428')
+        expect(product.name).to.equal('The Big Lebowski (Blu-ray)')
+        expect(product.current_price.value).to.equal('13.49')
+        expect(product.current_price.currency_code).to.equal('USD')
         done()
       })
     })

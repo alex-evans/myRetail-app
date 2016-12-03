@@ -13,10 +13,13 @@
   "author": "Alex Evans",
   "license": "ISC",
   "dependencies": {
+    "async": "^2.1.4",
+    "bluebird": "^3.4.6",
     "express": "^4.14.0",
     "mongodb": "^2.2.12",
     "mongoose": "^4.7.0",
-    "request": "^2.79.0"
+    "request": "^2.79.0",
+    "request-promise": "^4.1.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
