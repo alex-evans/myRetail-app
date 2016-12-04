@@ -4,7 +4,8 @@ let mongoose = require('mongoose')
 let express = require('express')
 let routes = require('./app/routes/index.js')
 let app = express()
-let url = process.env.MONGOLAB_URI || 'mongodb://localhost:27017'
+// let url = process.env.MONGOLAB_URI || 'mongodb://localhost:27017'
+let url = 'mongodb://aevans:GsDvs222@ds119578.mlab.com:19578/heroku_jsc0phx3'
 let port = process.env.PORT || 5000
 
 mongoose.connect(url)
