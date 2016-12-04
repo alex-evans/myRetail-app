@@ -14,7 +14,7 @@ module.exports = function Products(app) {
 
   app.route('/products/:id')
     .get(productHandler.getProduct)
-    .post(productHandler.postProduct)
-    .put(productHandler.updateProduct)
-    .delete(productHandler.deleteProduct)
+    .post(productHandler.postPrice)
+    .put(productHandler.updatePrice)
+    .delete(productHandler.deletePrice)
 }

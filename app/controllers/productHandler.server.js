@@ -1,88 +1,75 @@
 'use strict'
 
-let Products = require('../models/products.js')
+let Price = require('../models/price.js')
 let rp = require('request-promise')
 
 function ProductHandler() {
 
-  this.postProduct = function(req, res) {
+  this.postPrice = function(req, res) {
 
-    let newProduct = Products({
-      _id: req.params.id,
-      name: "The Big Lebowksi (Blu-ray) (Widescreen)"
+    // TODO: add a check to see if ProductID already exists
+
+    let newPrice = Price({
+      productId: req.params.id,
+      value: '13.49',
+      currency_code: 'USD'
     })
 
-    newProduct.save(function(err) {
+    newPrice.save(function(err) {
       if(err) throw err
-      return res.json({message: "Product successfully created!"})
+      return res.json({message: "Price successfully created!"})
     })
 
   }
 
   this.getProduct = function(req, res) {
-    // need to get product name first
-    let nameUrl = 'http://redsky.target.com/'
-    let nameVersion = 'v1/pdp/tcin/'
-    let nameId = req.params.id
-    let nameOpts = '?excludes=taxonomy,price,promotion,bulk_ship,rating_and_review_reviews,rating_and_review_statistics,question_answer_statistics'
+    let productId = req.params.id
+    let productApiUrl = 'http://redsky.target.com/'
+    let productApiVersion = 'v1/pdp/tcin/'
+    let productApiOpts = '?excludes=taxonomy,price,promotion,bulk_ship,rating_and_review_reviews,rating_and_review_statistics,question_answer_statistics'
 
     let options = {
       method: 'GET',
-      uri: nameUrl + nameVersion + nameId + nameOpts,
+      uri: productApiUrl + productApiVersion + productId + productApiOpts,
       json: true
     }
 
     rp(options)
-      .then(function(rtn) {
-        return rtn.product.item.product_description.title
-      })
-      .then(function(productName) {
-        let product = {
-          id: req.params.id,
-          name: productName,
-          current_price: {
-            value: 1,
-            currency_code: "test"
+      .then(function(apiData) {
+        let productApiName = apiData.product.item.product_description.title
+
+        Price.find({productId:productId}).exec(function(err, priceArray) {
+          if(err) throw err
+
+          let price = priceArray[0]
+
+          let product = {
+            id: productId,
+            name: productApiName,
+            current_price: {
+              value: price.value,
+              currency_code: price.currency_code
+            }
           }
-        }
-        return res.json(product)
+
+          return res.json(product)
+          })
       })
+
       .catch(function(err) {
         throw err
       })
-    /*
-    let product = {
-      id: req.params.id,
-      name: getName(req.params.id),
-      current_price: getPrice()
-    }
-    return res.json(product)
-    */
+
   }
 
-  function getName(id) {
-
-    console.log(nameUrl + nameVersion + nameId + options)
-    request(nameUrl + nameVersion + nameId + options, function(err, res, body) {
-      if(err) throw err
-      let productInfo = JSON.parse(body)
-      return productInfo.name
-    })
+  this.updatePrice = function(req, res) {
+    return res.json({message: "Price successfully updated!"})
   }
 
-  this.updateProduct = function(req, res) {
-    return res.json({message: "Product successfully updated!"})
+  this.deletePrice = function(req, res) {
+    return res.json({message: "Price successfully deleted!"})
   }
 
-  this.deleteProduct = function(req, res) {
-    return res.json({message: "Product successfully deleted!"})
-  }
-
-}
-
-
-function getPrice() {
-  return {value: 13.49,currency_code: "USD"}
 }
 
 module.exports = ProductHandler

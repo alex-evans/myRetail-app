@@ -4,7 +4,7 @@ var productHandler = require('../app/controllers/productHandler.server')
 var url = "http://localhost:7770"
 
 var mongoose = require('mongoose')
-var Products = require('../app/models/products')
+var Price = require('../app/models/price')
 
 describe("Main Page", () => {
 
@@ -38,24 +38,29 @@ describe("Products", function() {
       })
     })
   })
+})
 
-  describe("Create Product", function() {
+describe("Price", function() {
+  describe("Create Price", function() {
 
     it("returns status 200", function(done) {
-      request.post({url: url + '/products/2', form: {_id:2}}, function(err, res, body) {
+      request.post({url: url + '/products/2'}, function(err, res, body) {
         expect(res.statusCode).to.equal(200)
         done()
       })
     })
 
     it("returns creation success", function(done) {
-      request.post({url: url + '/products/3', form: {_id:3}}, function(err, res, body) {
-        expect(body).to.equal('{"message":"Product successfully created!"}')
+      request.post({url: url + '/products/3'}, function(err, res, body) {
+        expect(body).to.equal('{"message":"Price successfully created!"}')
         done()
       })
     })
 
   })
+})
+
+/*
 
   describe("Update Product", function() {
 
@@ -78,5 +83,4 @@ describe("Products", function() {
     })
 
   })
-
-})
+*/
