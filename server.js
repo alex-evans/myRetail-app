@@ -4,7 +4,7 @@ let mongoose = require('mongoose')
 let express = require('express')
 let routes = require('./app/routes/index.js')
 let app = express()
-let url = 'mongodb://localhost:27017'
+let url = process.env.MONGOLAB_URI || 'mongodb://localhost:27017'
 let port = process.env.PORT || 5000
 
 mongoose.connect(url)
@@ -22,5 +22,5 @@ app.listen(port, 'localhost', function(err) {
     console.log(err)
     return
   }
-  console.log('Listening at http://localhost:7770')
+  console.log('Listening at ', port)
 })
