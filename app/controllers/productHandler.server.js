@@ -8,6 +8,7 @@ function ProductHandler() {
   this.postPrice = function(req, res) {
 
     // TODO: add a check to see if ProductID already exists
+    // TODO: use data sent with the post instead of hardcoded data
 
     let newPrice = Price({
       productId: req.params.id,
@@ -53,6 +54,7 @@ function ProductHandler() {
           }
 
           return res.json(product)
+
           })
       })
 
@@ -63,10 +65,14 @@ function ProductHandler() {
   }
 
   this.updatePrice = function(req, res) {
+    // TODO: Update Price
+
     return res.json({message: "Price successfully updated!"})
   }
 
   this.deletePrice = function(req, res) {
+    // TODO: Delete Price
+
     return res.json({message: "Price successfully deleted!"})
   }
 

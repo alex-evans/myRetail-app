@@ -5,6 +5,7 @@ let express = require('express')
 let routes = require('./app/routes/index.js')
 let app = express()
 let url = 'mongodb://localhost:27017'
+let port = process.env.PORT || 5000
 
 mongoose.connect(url)
 let db = mongoose.connection
@@ -16,7 +17,7 @@ app.use('/common', express.static(process.cwd() + '/app/common'))
 
 routes(app)
 
-app.listen(7770, 'localhost', function(err) {
+app.listen(port, 'localhost', function(err) {
   if(err) {
     console.log(err)
     return

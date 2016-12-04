@@ -1,5 +1,5 @@
 var expect = require('chai').expect
-var request = require('request')
+var rp = require('request-promise')
 var productHandler = require('../app/controllers/productHandler.server')
 var url = "http://localhost:7770"
 
@@ -9,7 +9,7 @@ var Price = require('../app/models/price')
 describe("Main Page", () => {
 
   it("returns status 200", function(done) {
-    request(url, function(err, res, body) {
+    rp(url, function(err, res, body) {
       expect(res.statusCode).to.equal(200)
       done()
     })
@@ -18,17 +18,18 @@ describe("Main Page", () => {
 })
 
 describe("Products", function() {
+
   describe("Get Product", function() {
 
     it("returns status 200", function(done) {
-      request(url + '/products/13860428', function(err, res, body) {
+      rp(url + '/products/13860428', function(err, res, body) {
         expect(res.statusCode).to.equal(200)
         done()
       })
     })
 
     it("returns product JSON", function(done) {
-      request(url + '/products/13860428', function(err, res, body) {
+      rp(url + '/products/13860428', function(err, res, body) {
         var product = JSON.parse(body)
         expect(product.id).to.equal('13860428')
         expect(product.name).to.equal('The Big Lebowski (Blu-ray)')
@@ -37,50 +38,29 @@ describe("Products", function() {
         done()
       })
     })
+
   })
+
 })
 
 describe("Price", function() {
+
   describe("Create Price", function() {
 
     it("returns status 200", function(done) {
-      request.post({url: url + '/products/2'}, function(err, res, body) {
+      rp.post({url: url + '/products/2'}, function(err, res, body) {
         expect(res.statusCode).to.equal(200)
         done()
       })
     })
 
     it("returns creation success", function(done) {
-      request.post({url: url + '/products/3'}, function(err, res, body) {
+      rp.post({url: url + '/products/3'}, function(err, res, body) {
         expect(body).to.equal('{"message":"Price successfully created!"}')
         done()
       })
     })
 
   })
+
 })
-
-/*
-
-  describe("Update Product", function() {
-
-    it("returns status 200", function(done) {
-      request.put({url: url + '/products/4'}, function(err, res, body) {
-        expect(res.statusCode).to.equal(200)
-        done()
-      })
-    })
-
-  })
-
-  describe("Delete Product", function() {
-
-    it("returns status 200", function(done) {
-      request.delete({url: url + '/products/5'}, function(err, res, body) {
-        expect(res.statusCode).to.equal(200)
-        done()
-      })
-    })
-
-  })
-*/
