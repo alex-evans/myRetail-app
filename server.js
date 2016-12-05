@@ -17,7 +17,8 @@ app.use('/common', express.static(process.cwd() + '/app/common'))
 
 routes(app)
 
-app.listen(port, 'localhost', function(err) {
+// app.listen(port, 'localhost', function(err) {
+app.listen(port, function(err) {
   if(err) {
     console.log(err)
     return
