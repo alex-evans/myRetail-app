@@ -7,9 +7,9 @@ let app = express()
 let url = process.env.MONGOLAB_URI || 'mongodb://localhost:27017'
 let port = process.env.PORT || 5000
 
-mongoose.connect(url)
-let db = mongoose.connection
-db.on('error', console.error.bind(console, 'connection error:'))
+// mongoose.connect(url)
+// let db = mongoose.connection
+// db.on('error', console.error.bind(console, 'connection error:'))
 
 app.use('/controllers', express.static(process.cwd() + '/app/controllers'))
 app.use('/public', express.static(process.cwd() + '/public'))
