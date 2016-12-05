@@ -1,7 +1,7 @@
 var expect = require('chai').expect
 var rp = require('request-promise')
 var productHandler = require('../app/controllers/productHandler.server')
-var url = "http://localhost:7770"
+var url = "http://localhost:5000"
 
 var mongoose = require('mongoose')
 var Price = require('../app/models/price')

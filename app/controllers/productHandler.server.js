@@ -41,7 +41,7 @@ function ProductHandler() {
 
         Price.find({productId:productId}).exec(function(err, priceArray) {
           if(err) throw err
-
+          // TODO: Add code if Price is not set to not error
           let price = priceArray[0]
 
           let product = {
