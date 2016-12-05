@@ -5,24 +5,6 @@ let rp = require('request-promise')
 
 function ProductHandler() {
 
-  this.postPrice = function(req, res) {
-
-    // TODO: add a check to see if ProductID already exists
-    // TODO: use data sent with the post instead of hardcoded data
-
-    let newPrice = Price({
-      productId: req.params.id,
-      value: '13.49',
-      currency_code: 'USD'
-    })
-
-    newPrice.save(function(err) {
-      if(err) throw err
-      return res.json({message: "Price successfully created!"})
-    })
-
-  }
-
   this.getProduct = function(req, res) {
     let productId = req.params.id
     let productApiUrl = 'http://redsky.target.com/'
@@ -42,7 +24,7 @@ function ProductHandler() {
         Price.find({productId:productId}).exec(function(err, priceArray) {
           if(err) throw err
           // TODO: Add code if Price is not set to not error
-          let price = priceArray[0]
+          let price = priceArray[0] || {value: null, currency_code: null}
 
           let product = {
             id: productId,
@@ -61,6 +43,24 @@ function ProductHandler() {
       .catch(function(err) {
         throw err
       })
+
+  }
+
+  this.postPrice = function(req, res) {
+
+    // TODO: add a check to see if ProductID already exists
+    // TODO: use data sent with the post instead of hardcoded data
+
+    let newPrice = Price({
+      productId: req.params.id,
+      value: '13.49',
+      currency_code: 'USD'
+    })
+
+    newPrice.save(function(err) {
+      if(err) throw err
+      return res.json({message: "Price successfully created!"})
+    })
 
   }
 
