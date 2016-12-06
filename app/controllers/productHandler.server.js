@@ -42,7 +42,9 @@ function ProductHandler() {
       })
 
       .catch(function(err) {
-        throw err
+        
+        res.json(err)
+
       })
 
   }
@@ -50,30 +52,18 @@ function ProductHandler() {
   this.postPrice = function(req, res) {
 
     // TODO: add a check to see if ProductID already exists
-    // TODO: use data sent with the post instead of hardcoded data
-    let body = ''
 
-    req.on('data', function(chunk) {
-      body += chunk
-    })
-    req.on('end', function() {
-      console.log('Posted: ' + body)
-      res.writeHead(200)
-      res.end()
-    })
-/*
     let newPrice = Price({
       productId: req.params.id,
-      value: '13.49',
-      currency_code: 'USD'
+      value: req.body.value,
+      currency_code: req.body.currency_code
     })
 
     newPrice.save(function(err) {
       if(err) throw err
       return res.json({message: "Price successfully created!"})
     })
-*/
-    // res.end('Over!')
+
   }
 
   this.updatePrice = function(req, res) {

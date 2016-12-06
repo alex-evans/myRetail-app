@@ -36,3 +36,7 @@ convention.
  ## Testing
 
   - Unit Tests can be performed by running `npm test`
+
+  ## Deployed
+
+  - https://aevans-myretail.herokuapp.com/

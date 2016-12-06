@@ -42,21 +42,41 @@ describe("Products", function() {
   })
 
 })
-/*
+
 describe("Price", function() {
 
   describe("Create Price", function() {
 
     it("returns status 200", function(done) {
-      rp.post({url: url + '/products/2'}, function(err, res, body) {
+      var options = {
+        method: 'POST',
+        uri: url + '/products/2',
+        body: {
+          value: 10.01,
+          currency_code: 'USD'
+        },
+        json: true
+      }
+
+      rp.post(options, function(err, res, body) {
         expect(res.statusCode).to.equal(200)
         done()
       })
     })
 
     it("returns creation success", function(done) {
-      rp.post({url: url + '/products/3'}, function(err, res, body) {
-        expect(body).to.equal('{"message":"Price successfully created!"}')
+      var options = {
+        method: 'POST',
+        uri: url + '/products/3',
+        body: {
+          value: 20.01,
+          currency_code: 'USD'
+        },
+        json: true
+      }
+
+      rp.post(options, function(err, res, body) {
+        expect(body.message).to.equal('Price successfully created!')
         done()
       })
     })
@@ -64,4 +84,3 @@ describe("Price", function() {
   })
 
 })
-*/
