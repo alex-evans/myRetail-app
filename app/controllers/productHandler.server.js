@@ -23,7 +23,8 @@ function ProductHandler() {
 
         Price.find({productId:productId}).exec(function(err, priceArray) {
           if(err) throw err
-          // TODO: Add code if Price is not set to not error
+
+          // TODO: Clean up this clause, should be able to parse it instead
           let price = priceArray[0] || {value: null, currency_code: null}
 
           let product = {
@@ -50,7 +51,17 @@ function ProductHandler() {
 
     // TODO: add a check to see if ProductID already exists
     // TODO: use data sent with the post instead of hardcoded data
+    let body = ''
 
+    req.on('data', function(chunk) {
+      body += chunk
+    })
+    req.on('end', function() {
+      console.log('Posted: ' + body)
+      res.writeHead(200)
+      res.end()
+    })
+/*
     let newPrice = Price({
       productId: req.params.id,
       value: '13.49',
@@ -61,7 +72,8 @@ function ProductHandler() {
       if(err) throw err
       return res.json({message: "Price successfully created!"})
     })
-
+*/
+    // res.end('Over!')
   }
 
   this.updatePrice = function(req, res) {

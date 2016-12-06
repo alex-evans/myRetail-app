@@ -42,7 +42,7 @@ describe("Products", function() {
   })
 
 })
-
+/*
 describe("Price", function() {
 
   describe("Create Price", function() {
@@ -64,3 +64,4 @@ describe("Price", function() {
   })
 
 })
+*/

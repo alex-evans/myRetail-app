@@ -33,4 +33,6 @@ convention.
     containing a JSON request body similar to the GET response, and updates the product's
     price in the data store.
 
- 
+ ## Testing
+
+  - Unit Tests can be performed by running `npm test`
